@@ -1586,6 +1586,7 @@ void esp32loop()
         
         if(bSOFTSERON && SOFTSER_APP_ID == 1)
         {
+            Serial.println("NO sendPosition on bSOFTSERON");
             // no normal positons sent
         }
         else
