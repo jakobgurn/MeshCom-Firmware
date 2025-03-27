@@ -151,6 +151,10 @@ struct s_meshcom_settings
 	int max_hop_pos = 0;
 
 	char node_update[20] = {0};
+
+	#if defined(BOARD_T_DECK) || defined (BOARD_T_DECK_PLUS)
+	int node_map = 0;
+	#endif
 };
 
 extern s_meshcom_settings meshcom_settings;
