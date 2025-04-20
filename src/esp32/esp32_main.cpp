@@ -75,6 +75,8 @@ bool bLED = false;
 
 #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
 #include <t-deck/tdeck_main.h>
+#include <t-deck/tdeck_extern.h>
+#include <t-deck/lv_obj_functions.h>
 #endif
 
 /**
@@ -1927,6 +1929,10 @@ void esp32loop()
             		Serial.print("[readBatteryVoltage]...");
                     Serial.printf("volt %.1f proz %i\n", global_batt, global_proz);
                 }
+
+                #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+                tdeck_update_batt_label(global_batt, global_proz);
+                #endif 
             #endif
 
             if(bDisplayCont)
@@ -2171,7 +2177,20 @@ void esp32loop()
         {
             startExternUDP();
         }
-}
+    }
+
+    #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+
+    if ((tdeck_tft_timer + (TDECK_TFT_TIMEOUT * 1000)) < millis())
+    {
+        tft_off();
+    }
+
+    lv_task_handler();
+
+    
+
+    #endif
 
     //
     ////////////////////////////////////////////////
