@@ -45,6 +45,11 @@ extern bool bMitHardReset;
 #include <esp_partition.h>
 #endif
 
+// libs for T-Deck view refresh
+#if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+#include <t-deck/lv_obj_functions.h>
+#endif
+
 uint16_t json_len = 0;
 void sendNodeSetting();
 void sendGpsJson();
@@ -795,6 +800,10 @@ void commandAction(char *umsg_text, bool ble)
         bReturn = true;
 
         save_settings();
+
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
     }
     else
     if(commandCheck(msg_text+2, (char*)"track off") == 0)
@@ -815,6 +824,10 @@ void commandAction(char *umsg_text, bool ble)
         save_settings();
 
         sendDisplayHead(true);
+
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
     }
     else
     #if defined (ENABLE_GPS)
@@ -834,6 +847,10 @@ void commandAction(char *umsg_text, bool ble)
         bReturn = true;
 
         save_settings();
+
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
     }
     else
     if(commandCheck(msg_text+2, (char*)"gps off") == 0)
@@ -863,6 +880,10 @@ void commandAction(char *umsg_text, bool ble)
         posinfo_interval = POSINFO_INTERVAL;
 
         save_settings();
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
     }
     else
     if(commandCheck(msg_text+2, (char*)"gps reset") == 0)
@@ -878,6 +899,10 @@ void commandAction(char *umsg_text, bool ble)
         bMitHardReset=true;
 
         state = 1;
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
 
         return;
     }
@@ -1104,6 +1129,10 @@ void commandAction(char *umsg_text, bool ble)
         bReturn = true;
 
         save_settings();
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
     }
     else
     if(commandCheck(msg_text+2, (char*)"bmx off") == 0 || commandCheck(msg_text+2, (char*)"bme off") == 0 || commandCheck(msg_text+2, (char*)"bmp off") == 0)
@@ -1207,6 +1236,10 @@ void commandAction(char *umsg_text, bool ble)
         bReturn = true;
 
         save_settings();
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
     }
     else
 #if defined(LPS33)
@@ -1406,6 +1439,10 @@ void commandAction(char *umsg_text, bool ble)
 
         if(!meshcom_settings.node_hasIPaddress)
             rebootAuto = millis() + 15 * 1000; // 15 Sekunden
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
     }
     else
     if(commandCheck(msg_text+2, (char*)"webserver off") == 0)
@@ -1424,6 +1461,10 @@ void commandAction(char *umsg_text, bool ble)
 
         if(meshcom_settings.node_hasIPaddress)
             rebootAuto = millis() + 15 * 1000; // 15 Sekunden
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
     }
     else
     if(commandCheck(msg_text+2, (char*)"webpwd ") == 0)
@@ -1483,6 +1524,10 @@ void commandAction(char *umsg_text, bool ble)
         }
 
         save_settings();
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
 
         return;
     }
@@ -1501,6 +1546,10 @@ void commandAction(char *umsg_text, bool ble)
         bReturn = true;
 
         save_settings();
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
     }
     else
     if(commandCheck(msg_text+2, (char*)"mesh off") == 0)
@@ -1517,6 +1566,10 @@ void commandAction(char *umsg_text, bool ble)
         bReturn = true;
 
         save_settings();
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
     }
     else
     if(commandCheck(msg_text+2, (char*)"extudp on") == 0)
@@ -2007,6 +2060,10 @@ void commandAction(char *umsg_text, bool ble)
 
         if(ble)
             sendAPRSset();
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
 
         return;
     }
@@ -2031,6 +2088,10 @@ void commandAction(char *umsg_text, bool ble)
 
         if(ble)
             sendAPRSset();
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
 
         return;
     }
@@ -2082,6 +2143,10 @@ void commandAction(char *umsg_text, bool ble)
         save_settings();
 
         rebootAuto = millis() + 15 * 1000; // 15 Sekunden
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
 
         return;
     }
@@ -2321,6 +2386,10 @@ void commandAction(char *umsg_text, bool ble)
         }
 
         save_settings();
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
 
         bPos=true;
     }
@@ -2347,6 +2416,10 @@ void commandAction(char *umsg_text, bool ble)
         }
 
         save_settings();
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
 
         bPos=true;
     }
@@ -2369,6 +2442,10 @@ void commandAction(char *umsg_text, bool ble)
         }
 
         save_settings();
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
 
         bPos=true;
     }
@@ -2603,6 +2680,10 @@ void commandAction(char *umsg_text, bool ble)
 
             rebootAuto = millis() + 15 * 1000; // 15 Sekunden
         }
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
 
         return;
     }
@@ -2944,6 +3025,10 @@ void commandAction(char *umsg_text, bool ble)
         bReturn = true;
 
         save_settings();
+        
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_refresh_SET_view();
+        #endif
 
     }
     else
