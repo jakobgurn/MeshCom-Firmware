@@ -501,10 +501,6 @@ void OnRxDone(uint8_t *payload, uint16_t size, int16_t rssi, int8_t snr)
                                     sendDisplayText(aprsmsg, rssi, snr);
 
                                     addBLEOutBuffer(RcvBuffer, size);
-
-                                    #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
-                                    tdeck_add_MSG(aprsmsg); 
-                                    #endif
                                 }
                             }
                             else
@@ -558,10 +554,6 @@ void OnRxDone(uint8_t *payload, uint16_t size, int16_t rssi, int8_t snr)
                                         {
                                             addBLEOutBuffer(RcvBuffer, size);
                                         }
-
-                                        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
-                                        tdeck_add_MSG(aprsmsg); 
-                                        #endif
                                     }
 
                                     // If message already comes from one gateway/server no ACK from another gateway
