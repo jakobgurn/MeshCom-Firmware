@@ -42,6 +42,8 @@ def get_target_hardware(asset):
     "ttgo_tbeam_SX1268.bin" : "tbeamSX1268",
     "ttgo_tbeam_supreme_l76k.bin" : "tbeamSupreme",
     "ttgo-lora32-v21.bin" : "tlora",
+    "t_deck.bin" : "t_deck",
+    "t_deck_plus.bin" : "t_deck_plus",
     "wiscore_rak4631.uf2" : "rak4631_uf2",
     "wiscore_rak4631.zip" : "rak4631_zip",
     }
@@ -60,6 +62,8 @@ def get_target_hardware(asset):
     "ttgo_tbeam_SX1268.bin" : "bootloader.bin",
     "ttgo_tbeam_supreme_l76k.bin" : "bootloader-s3.bin",
     "ttgo-lora32-v21.bin" : "bootloader.bin",
+    "t_deck.bin" : "bootloader-s3.bin",
+    "t_deck_plus.bin" : "bootloader-s3.bin",
     "wiscore_rak4631.uf2" : "wiscore_rak4631.uf2",
     "wiscore_rak4631.zip" : "wiscore_rak4631.zip",
     }
@@ -78,6 +82,8 @@ def get_target_hardware(asset):
     "ttgo_tbeam_SX1268.bin" : "safeboot.bin",
     "ttgo_tbeam_supreme_l76k.bin" : "safeboot-s3.bin",
     "ttgo-lora32-v21.bin" : "safeboot.bin",
+    "t_deck.bin" : "safeboot-s3.bin",
+    "t_deck_plus.bin" : "safeboot-s3.bin",
     "wiscore_rak4631.uf2" : "wiscore_rak4631.uf2",
     "wiscore_rak4631.zip" : "wiscore_rak4631.zip",
     }
