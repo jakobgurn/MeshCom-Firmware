@@ -12,7 +12,10 @@ ttgo_tbeam_SX1262.bin
 ttgo_tbeam_SX1268.bin
 vision-master-e290.bin
 wiscore_rak4631.bin
+tdeck.bin
+tdeck_plus.bin
 
+please use WEBFlasher https://esptools.oevsv.at for tdeck and tdeck_plus coming from old version (4.30q)
 
 [MeshCom Changelog](https://icssw.org/meshcom-versionen/)
 
