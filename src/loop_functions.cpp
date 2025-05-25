@@ -1161,6 +1161,11 @@ void sendDisplayText(struct aprsMessage &aprsmsg, int16_t rssi, int8_t snr)
         return;
     }
     else
+    if(aprsmsg.msg_destination_path.compareTo("100001") == 0 && !bSOFTSERON)
+    {
+        return;
+    }
+    else
     {
         if(!bDisplayVolt)
             bPosDisplay=false;

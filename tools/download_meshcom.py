@@ -60,6 +60,8 @@ def get_target_hardware(asset):
     "ttgo_tbeam_SX1268.bin" : "bootloader.bin",
     "ttgo_tbeam_supreme_l76k.bin" : "bootloader-s3.bin",
     "ttgo-lora32-v21.bin" : "bootloader.bin",
+    "wiscore_rak4631.uf2" : "wiscore_rak4631.uf2",
+    "wiscore_rak4631.zip" : "wiscore_rak4631.zip",
     }
 
     safeboot_dict = {
@@ -76,6 +78,8 @@ def get_target_hardware(asset):
     "ttgo_tbeam_SX1268.bin" : "safeboot.bin",
     "ttgo_tbeam_supreme_l76k.bin" : "safeboot-s3.bin",
     "ttgo-lora32-v21.bin" : "safeboot.bin",
+    "wiscore_rak4631.uf2" : "wiscore_rak4631.uf2",
+    "wiscore_rak4631.zip" : "wiscore_rak4631.zip",
     }
 
 
@@ -112,21 +116,25 @@ if __name__ == "__main__":
             [target_hw , target_bootloader, target_safeboot] = get_target_hardware(asset)
             filename = asset["name"]
             asset_url = asset["browser_download_url"]
-
+            
             if target_hw is not None:
                 target_asset_path = target_path + target_hw + "/"
 
                 Path(target_asset_path).mkdir(parents=True, exist_ok=True)
 
-                target_filename = target_asset_path + "firmware.bin"
+                if target_hw == "rak4631_uf2" or target_hw == "rak4631_zip":
+                    target_filename = target_asset_path + target_bootloader
+                else:
+                    target_filename = target_asset_path + "firmware.bin"
                 if os.path.isfile(target_filename):
                     print(tagname + " - " + filename +  " already exists -> skipping")
                 else:
                     print(tagname + " - " + filename +  " downloading")
                     urllib.request.urlretrieve(asset_url, target_filename)
 
-                # Download corresponding bootloader + safeboot + partitions + otadata
-                download_asset(release['assets'],target_bootloader,target_asset_path + "bootloader.bin")
-                download_asset(release['assets'],target_safeboot,target_asset_path + "safeboot.bin")
-                download_asset(release['assets'],"partitions.bin",target_asset_path + "partitions.bin")
-                download_asset(release['assets'],"otadata.bin",target_asset_path + "otadata.bin")
+                if target_hw != "rak4631_uf2" and target_hw != "rak4631_zip":
+                    # Download corresponding bootloader + safeboot + partitions + otadata
+                    download_asset(release['assets'],target_bootloader,target_asset_path + "bootloader.bin")
+                    download_asset(release['assets'],target_safeboot,target_asset_path + "safeboot.bin")
+                    download_asset(release['assets'],"partitions.bin",target_asset_path + "partitions.bin")
+                    download_asset(release['assets'],"otadata.bin",target_asset_path + "otadata.bin")
