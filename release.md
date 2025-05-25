@@ -18,9 +18,11 @@ ttgo_tbeam_supreme_l76k.bin
 vision-master-e290.bin
 wiscore_rak4631.bin
 
-please use webflasher for:
+please use webflasher https://esptool.oevsv.at for upgrade from 4.30q:
 t_deck.bin
 t_deck_plus.bin
+
+newer version able to upgrade via OTA-Flasher
 
 
 [MeshCom Changelog](https://icssw.org/meshcom-versionen/)
