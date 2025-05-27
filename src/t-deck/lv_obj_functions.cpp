@@ -1231,7 +1231,7 @@ void tft_off()
 /**
  * update the battery label
  */
-void tdeck_update_batt_label(float batt, float proz)
+void tdeck_update_batt_label(float batt, int proz)
 {
     char vChar[35];
 

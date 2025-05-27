@@ -2868,7 +2868,7 @@ void commandAction(char *umsg_text, bool ble)
         {
             meshcom_settings.node_wifi_power = iVar;
 
-            Serial.printf("set wifitxpower to %i dBm (factor:%i/%i)\n", iVar, meshcom_settings.node_wifi_power, iVar * 4);
+            Serial.printf("set wifitxpower to %i dBm (factor:%i -> %i dBm)\n", iVar, meshcom_settings.node_wifi_power, iVar * 4);
 
             save_settings();
             

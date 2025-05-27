@@ -40,7 +40,7 @@ def get_target_hardware(asset):
     "ttgo_tbeam.bin": "tbeam",
     "ttgo_tbeam_SX1262.bin" : "tbeamSX1262",
     "ttgo_tbeam_SX1268.bin" : "tbeamSX1268",
-    "ttgo_tbeam_supreme_l76k.bin" : "tbeamSupreme",
+    "ttgo_tbeam_supreme_l76k.bin" : "tbeam_supreme_l76k",
     "ttgo-lora32-v21.bin" : "tlora",
     "t_deck.bin" : "t_deck",
     "t_deck_plus.bin" : "t_deck_plus",

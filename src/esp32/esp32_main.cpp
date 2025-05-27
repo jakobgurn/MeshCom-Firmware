@@ -768,12 +768,20 @@ void esp32setup()
     {
         Serial.println(F("success"));
         bRadio=true;
+
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_addMessage(true);
+        #endif
     }
     else
     {
         Serial.print(F("failed, code "));
         Serial.println(state);
         bRadio=false;
+
+        #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        tdeck_addMessage(false);
+        #endif
     }
 
     #if defined(BOARD_E220)
@@ -1938,11 +1946,11 @@ void esp32loop()
                 if(bDisplayCont)
                 {
             		Serial.print("[readBatteryVoltage]...");
-                    Serial.printf("volt %.1f proz %i\n", global_batt, global_proz);
+                    Serial.printf("volt %.1f proz %i max_batt %.1f\n", global_batt, global_proz, meshcom_settings.node_maxv*1000.0);
                 }
 
                 #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
-                tdeck_update_batt_label(global_batt, global_proz);
+                tdeck_update_batt_label(global_batt/1000., global_proz);
                 #endif 
             #endif
 
@@ -2199,14 +2207,12 @@ void esp32loop()
 
     lv_task_handler();
 
-    
-
     #endif
 
     //
     ////////////////////////////////////////////////
 
-    delay(100);
+    // WOR/KBC not necesary delay(100);
 
     yield();
 }

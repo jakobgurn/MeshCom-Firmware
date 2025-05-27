@@ -29,6 +29,7 @@ using namespace ace_button;
 #include "lv_obj_functions.h"
 #include "lv_obj_functions_extern.h"
 #include <loop_functions_extern.h>
+#include <batt_functions.h>
 
 #define I2S_CH I2S_NUM_1
 
@@ -129,30 +130,21 @@ void initTDeck()
     setupLvgl();
     setDisplayLayout(lv_scr_act());
 
-    //! Map initialization
     init_map();
 
     Serial.print("[INIT]...MeshCom ");
     Serial.print(SOURCE_VERSION);
     Serial.println(SOURCE_VERSION_SUB);
-    snprintf(buf, 256, "MeshCom %s%s\n", SOURCE_VERSION, SOURCE_VERSION_SUB);
-    addMessage(buf);
 
     Serial.print("[INIT]...Touch: ");
     Serial.println(bTouchDected == true ? "OK" : "ERROR");
-    snprintf(buf, 256, "%s: %s\n", "Touch", bTouchDected == true ? "OK" : "ERROR");
-    addMessage(buf);
 
-    ret = setupSD();
+    bSDDected = setupSD();
     Serial.print("[INIT]...SDCard: ");
-    Serial.println(ret == true ? "OK" : "ERROR");
-    snprintf(buf, 256, "%s: %s\n", "SDCard", ret == true ? "OK" : "ERROR");
-    addMessage(buf);
+    Serial.println(bSDDected == true ? "OK" : "ERROR");
 
     Serial.print("[INIT]...Keyboard: ");
     Serial.println(kbDected == true ? "OK" : "ERROR");
-    snprintf(buf, 256, "%s: %s\n", "Keyboard", kbDected == true ? "OK" : "ERROR");
-    addMessage(buf);
     
     // play_start_sound();
 
@@ -637,4 +629,24 @@ static void touchpad_read( lv_indev_drv_t *indev_driver, lv_indev_data_t *data )
             }
         }
     }
+}
+
+void tdeck_addMessage(bool bSuccess)
+{
+    char buf[50];
+
+    snprintf(buf, 50, "MeshCom %s%s\n", SOURCE_VERSION, SOURCE_VERSION_SUB);
+    addMessage(buf);
+
+    snprintf(buf, 50, "%s: %s\n", "Touch", bTouchDected == true ? "OK" : "ERROR");
+    addMessage(buf);
+
+    snprintf(buf, 50, "%s: %s\n", "SDCard", bSDDected == true ? "OK" : "ERROR");
+    addMessage(buf);
+
+    snprintf(buf, 50, "%s: %s\n", "Keyboard", kbDected == true ? "OK" : "ERROR");
+    addMessage(buf);
+
+    snprintf(buf, 50, "%s: %s\n", "Radio", bSuccess == true ? "OK" : "ERROR");
+    addMessage(buf);
 }
