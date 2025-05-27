@@ -15,6 +15,7 @@
 bool clicked = false;
 bool bInputSelected = false;
 bool bTouchDected = false;
+bool bSDDected = false;
 unsigned long tdeck_tft_timer = 0;
 
 String strMaps[MAX_MAP] = {"Europe", "Germany", "Austria", "OE3", "OE1"};

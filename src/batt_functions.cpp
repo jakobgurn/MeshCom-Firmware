@@ -302,6 +302,11 @@ float read_batt(void)
 	
 		raw = (float)battery_levl;
 
+	#elif defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+
+        uint16_t adcValue = analogRead(vbat_pin);
+        raw = adcValue;
+
 	#elif defined(BOARD_HELTEC_V3)
 
 		// ADC resolution
@@ -394,6 +399,8 @@ float read_batt(void)
 		raw = raw * 1000.0; // convert to volt
 	#elif defined(BOARD_E290)
 		raw = raw * 4.13173653;
+	#elif defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+        raw = raw * 1.7209; //1.66051;
 	#else
 		raw = raw * 24.80;
 	#endif

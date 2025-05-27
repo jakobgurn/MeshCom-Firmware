@@ -117,7 +117,7 @@ unsigned int loopL76KGPS()
     {
         char c = SerialGPS.read();
         
-        if(bGPSDEBUG && bDEBUG)
+        if(bGPSDEBUG && bDisplayCont)
         {
             Serial.print(c);
             bGPSAVAIL=true;
@@ -128,7 +128,7 @@ unsigned int loopL76KGPS()
         }
     }
 
-    if(bGPSDEBUG && bDEBUG && bGPSAVAIL)
+    if(bGPSDEBUG && bDisplayCont && bGPSAVAIL)
         Serial.println("");
 
     return displayInfo();

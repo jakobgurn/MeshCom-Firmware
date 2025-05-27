@@ -24,7 +24,11 @@ uint8_t mheardWrite = 0;   // counter for ringbuffer
 uint8_t mheardPathWrite = 0;   // counter for ringbuffer
 
 #define max_hardware 20
+#if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+String HardWare[max_hardware] = {"no info", "TLO_V2", "TLO_V1", "TLV2_1p6", "TBEAM", "TB_1268", "TB_0p7", "TECHO", "TDECK", "RAK4631", "HELTV21", "HELTV1", "TB_2101", "EB_E22", "HELTV3", "HELT_E290", "TB_1262", "TDECK+", "TB_SL76K", "ES3_E22"};
+#else
 String HardWare[max_hardware] = {"no info", "TLORA_V2", "TLORA_V1", "TLORA_V2_1_1p6", "TBEAM", "TBEAM_1268", "TBEAM_0p7", "T_ECHO", "TDECK", "RAK4631", "HELTEC_V2_1", "HELTEC_V1", "TBEAM_AXP2101", "EBYTE_E22", "HELTEC_V3", "HELTEC_E290", "TBEAM_1262", "TDECK_PLUS", "TBEAM_SL76K", "ESP_S3_E22"};
+#endif
 
 void initMheard()
 {

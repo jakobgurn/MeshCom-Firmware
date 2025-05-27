@@ -56,11 +56,11 @@ void initDisplay()
 
     if (idtype == 1)
     { //Address of the display to be checked
-        u8g2 = &u8g2_2;
+        u8g2 = &u8g2_1;
     }
     else
     {
-        u8g2 = &u8g2_1;
+        u8g2 = &u8g2_2;
     }
 
     u8g2->begin();
