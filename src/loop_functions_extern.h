@@ -221,3 +221,24 @@ extern String strSOFTSERAPP_FIXPEGEL2;
 extern String strSOFTSERAPP_FIXTEMP;
 
 extern byte c1;
+
+extern int iDisplayType;
+
+extern int pageLine[7][3];
+extern char pageText[7][25];
+extern char pageTextLong1[25];
+extern char pageTextLong2[200];
+extern int pageLineAnz;
+
+#define PAGE_MAX 6
+
+extern int pageLastLine[PAGE_MAX][7][3];
+extern char pageLastText[PAGE_MAX][7][25];
+extern char pageLastTextLong1[PAGE_MAX][25];
+extern char pageLastTextLong2[PAGE_MAX][200];
+extern int pageLastLineAnz[PAGE_MAX];
+extern int pageLastPointer;
+extern int pagePointer;
+extern int pageHold;
+
+extern bool bShowHead;

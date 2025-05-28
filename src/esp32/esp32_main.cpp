@@ -41,6 +41,7 @@
 #include <mheard_functions.h>
 #include <clock.h>
 #include <onewire_functions.h>
+#include <onebutton_functions.h>
 #include <lora_setchip.h>
 #include "esp32_functions.h"
 
@@ -686,9 +687,8 @@ void esp32setup()
     if(bONEWIRE)
         init_onewire();
 
+    init_onebutton();
 
-    initButtonPin();
-    
     Serial.printf("[INIT].._GW_ID: %08X\n", _GW_ID);
 
     ////////////////////////////////////////////////////////////////////
@@ -1628,9 +1628,7 @@ void esp32loop()
         }
     #endif
 
-    #if defined (BUTTON_PIN)
-        checkButtonState();
-    #endif
+    loop_onebutton();
 
     #if defined (ANALOG_PIN)
         if(bAnalogCheck)
@@ -1687,8 +1685,6 @@ void esp32loop()
 
         hasMsgFromPhone = false;
     }
-
-    checkButtonState();
 
     if (isPhoneReady == 1)
     {
@@ -1802,16 +1798,10 @@ void esp32loop()
         gps_refresh_timer = millis();
     }
 
-    checkButtonState();
-
     // posinfo_interval in Seconds
     if (((posinfo_timer + (posinfo_interval * 1000)) < millis()) || (millis() > 100000 && millis() < 130000 && bPosFirst) || posinfo_shot)
     {
         bPosFirst = false;
-
-        int interval = posinfo_interval;
-        if(posinfo_shot)
-            interval = 0;
 
         posinfo_shot=false;
         
@@ -1895,8 +1885,6 @@ void esp32loop()
         }
     }
 
-    checkButtonState();
-
     checkSerialCommand();
 
     if(BattTimeWait == 0)
@@ -1963,8 +1951,6 @@ void esp32loop()
             BattTimeWait = millis();
         }
     }
-
-    checkButtonState();
 
 //#ifndef BOARD_TLORA_OLV216
     if(bONEWIRE)
@@ -2037,8 +2023,6 @@ void esp32loop()
         }
     }
     #endif
-
-    checkButtonState();
 
     #if defined(ENABLE_MC811)
     if(bMCU811ON && mcu811_found)
@@ -2113,8 +2097,6 @@ void esp32loop()
     }
     #endif
     
-    checkButtonState();
-
     ////////////////////////////////////////////////
     // WIFI Gateway functions
     if(bGATEWAY && meshcom_settings.node_hasIPaddress)
@@ -2136,14 +2118,10 @@ void esp32loop()
 
     }
 
-    checkButtonState();
-
     if(bEXTUDP)
     {
         getExternUDP();
     }
-
-    checkButtonState();
 
     if(bWEBSERVER || bEXTUDP || bGATEWAY)
     {
