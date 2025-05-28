@@ -54,7 +54,7 @@ void initDisplay()
         return;
     }
 
-    if (idtype == 1)
+    if (idtype == 0)
     { //Address of the display to be checked
         u8g2 = &u8g2_1;
     }

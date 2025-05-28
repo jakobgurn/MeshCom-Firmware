@@ -25,9 +25,10 @@ void sendDisplayMainline();
 void sendDisplayTime();
 void mainStartTimeLoop();
 
+void E290DisplayUpdate();
+
+
 void init_loop_function();
-void initButtonPin();
-void checkButtonState();
 
 void initAnalogPin();
 void checkAnalogValue();

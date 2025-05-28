@@ -26,6 +26,7 @@
 #include "io_functions.h"
 #include "softser_functions.h"
 #include <onewire_functions.h>
+#include <onebutton_functions.h>
 
 //TEST #include "compress_functions.h"
 
@@ -637,7 +638,7 @@ void commandAction(char *umsg_text, bool ble)
 
         save_settings();
 
-        initButtonPin();
+        init_onebutton();
     }
     else
     if(commandCheck(msg_text+2, (char*)"button off") == 0)
@@ -681,7 +682,8 @@ void commandAction(char *umsg_text, bool ble)
         bReturn = true;
 
         iButtonPin = ibt;
-        initButtonPin();
+
+        init_onebutton();
     }
     else
     #if defined (ANALOG_PIN)

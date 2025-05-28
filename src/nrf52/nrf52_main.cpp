@@ -22,6 +22,8 @@
 
 #include <nrf_eth.h>
 
+#include "onebutton_functions.h"
+
 // Ethernet Object
 NrfETH neth;
 
@@ -334,7 +336,7 @@ void nrf52setup()
     init_loop_function();
 
     // user button init
-    initButtonPin();
+    init_onebutton();
 
     //gps init
     pinMode(WB_IO2, OUTPUT);
@@ -1051,7 +1053,7 @@ void nrf52loop()
     }
     #endif
 
-    checkButtonState();
+    loop_onebutton();
 
     // check if message from phone to send
     if(hasMsgFromPhone)
@@ -1386,8 +1388,6 @@ if (isPhoneReady == 1)
         }
     }
 
-    checkButtonState();
-
     mainStartTimeLoop();
 
     if(DisplayOffWait > 0)
@@ -1626,8 +1626,6 @@ if (isPhoneReady == 1)
             hb_timer = millis();
         }
     }
-
-    checkButtonState();
 
     if(bEXTUDP)
     {
