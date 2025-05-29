@@ -15,5 +15,6 @@ void initTDeck();
 void tdeck_update_batt_label(float batt, int proz);
 void tdeck_update_time_label();
 void tdeck_addMessage(bool bSuccess);
+void tdeck_clear_text_ta();
 
 #endif // _TDECK_MAIN_H_

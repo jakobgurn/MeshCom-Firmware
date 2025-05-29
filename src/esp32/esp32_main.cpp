@@ -1157,6 +1157,10 @@ void esp32setup()
         pinMode(BOARD_LED, OUTPUT);
     #endif
 
+    #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
+    tdeck_clear_text_ta();
+    #endif
+
 }
 
 // BLE TX Function -> Node to Client

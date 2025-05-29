@@ -170,8 +170,6 @@ void initTDeck()
 
     tdeck_refresh_SET_view();
 
-    lv_textarea_set_text(text_ta, "");
-
     lv_table_set_cell_value(position_ta, 0, 0, (char*)"Call");
     lv_table_set_cell_value(position_ta, 0, 1, (char*)"Time");
     lv_table_set_cell_value(position_ta, 0, 2, (char*)"Position");
@@ -639,6 +637,9 @@ static void touchpad_read( lv_indev_drv_t *indev_driver, lv_indev_data_t *data )
     }
 }
 
+/**
+ * adds initialization messages to message text area
+ */
 void tdeck_addMessage(bool bSuccess)
 {
     char buf[50];
@@ -657,4 +658,12 @@ void tdeck_addMessage(bool bSuccess)
 
     snprintf(buf, 50, "%s: %s\n", "Radio", bSuccess == true ? "OK" : "ERROR");
     addMessage(buf);
+}
+
+/**
+ * clears the message text area
+ */
+void tdeck_clear_text_ta()
+{
+    lv_textarea_set_text(text_ta, "");
 }
