@@ -2,7 +2,6 @@
 #define _ESP32_FLASH_H_
 
 #include <Arduino.h>
-#include <configuration.h>
 
 #define MESHCOM_DATA_MARKER 0x55
 
@@ -172,7 +171,7 @@ struct s_meshcom_settings
 	int node_modus = 0;
 	#endif
 
-	#if defined(ENABLE_AUDIO)
+	#if defined(BOARD_T_DECK) || defined (BOARD_T_DECK_PLUS)
 	bool node_mute = false;
 	#endif
 };

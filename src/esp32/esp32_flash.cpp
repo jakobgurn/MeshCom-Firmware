@@ -201,7 +201,7 @@ void init_flash(void)
     meshcom_settings.node_modus = preferences.getInt("node_modus", 0);
     #endif
 
-    #if defined(ENABLE_AUDIO)
+    #if defined(BOARD_T_DECK) || defined (BOARD_T_DECK_PLUS)
     meshcom_settings.node_mute = preferences.getBool("node_mute", false);
     #endif
 }
@@ -392,7 +392,7 @@ void save_settings(void)
     preferences.putInt("node_modus", meshcom_settings.node_modus);
     #endif
     
-    #if defined(ENABLE_AUDIO)
+    #if defined(BOARD_T_DECK) || defined (BOARD_T_DECK_PLUS)
     preferences.putBool("node_mute", meshcom_settings.node_mute);
     #endif 
 

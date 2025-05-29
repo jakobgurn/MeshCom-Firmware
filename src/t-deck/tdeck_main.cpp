@@ -150,8 +150,11 @@ void initTDeck()
     Serial.print("[INIT]...Keyboard: ");
     Serial.println(kbDected == true ? "OK" : "ERROR");
     
-    play_file_from_sd_blocking(meshcom_settings.node_audio_start.c_str(), 12);
-    //play_file_from_sd(meshcom_settings.node_audio_start.c_str(), 12);
+    // if (!play_file_from_sd(meshcom_settings.node_audio_start.c_str(), 12))
+    if (!play_file_from_sd_blocking(meshcom_settings.node_audio_start.c_str(), 12))
+    {
+        play_cw_start();
+    }
 
     // SET Map
     set_map(meshcom_settings.node_map);
