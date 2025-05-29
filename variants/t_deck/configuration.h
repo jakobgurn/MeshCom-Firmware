@@ -20,6 +20,7 @@
 //#define ENABLE_MC811
 //#define ENABLE_RTC
 #define ENABLE_SOFTSER
+#define ENABLE_AUDIO
 #define TX_POWER_MAX 21  // max. 5dBm
 #define TX_POWER_MIN 5
 #define LORA_PREAMBLE_LENGTH DEFAULT_PREAMPLE_LENGTH  // Same for Tx and Rx

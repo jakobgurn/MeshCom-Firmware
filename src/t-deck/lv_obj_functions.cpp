@@ -24,6 +24,10 @@
 
 #include <esp32/esp32_flash.h>
 
+#if defined(ENABLE_AUDIO)
+#include <esp32/esp32_audio.h>
+#endif
+
 int         iKeyBoardType=1;
 
 lv_obj_t    *btnlabelup;
@@ -1626,5 +1630,8 @@ void tdeck_add_MSG(String callsign, String path, String message)
     }
 
     // play_sound
-    //play_message_sound();
+    if (!play_file_from_sd_blocking(meshcom_settings.node_audio_msg.c_str(), 20))
+    {
+        // playback not possible - SD available?
+    }
 }

@@ -75,6 +75,10 @@ int iCount_weiss=0;
 bool bLED = true;
 #endif
 
+#if defined(ENABLE_AUDIO)
+#include "esp32_audio.h"
+#endif
+
 #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)
 #include <t-deck/tdeck_main.h>
 #include <t-deck/tdeck_extern.h>
@@ -509,6 +513,10 @@ void esp32setup()
     iButtonPin = BUTTON_PIN;
     if(meshcom_settings.node_button_pin > 0)
         iButtonPin = meshcom_settings.node_button_pin;
+
+    #if defined(ENABLE_AUDIO)
+    init_audio();
+    #endif
 
     // Initialize T-Deck GUI
     #if defined(BOARD_T_DECK) || defined(BOARD_T_DECK_PLUS)

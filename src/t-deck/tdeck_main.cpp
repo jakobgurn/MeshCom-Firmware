@@ -31,6 +31,10 @@ using namespace ace_button;
 #include <loop_functions_extern.h>
 #include <batt_functions.h>
 
+#if defined(ENABLE_AUDIO)
+#include <esp32/esp32_audio.h>
+#endif
+
 #define I2S_CH I2S_NUM_1
 
 TFT_eSPI            tft;
@@ -146,7 +150,8 @@ void initTDeck()
     Serial.print("[INIT]...Keyboard: ");
     Serial.println(kbDected == true ? "OK" : "ERROR");
     
-    // play_start_sound();
+    play_file_from_sd_blocking(meshcom_settings.node_audio_start.c_str(), 12);
+    //play_file_from_sd(meshcom_settings.node_audio_start.c_str(), 12);
 
     // SET Map
     set_map(meshcom_settings.node_map);
